@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "id": 361,
+      "name": "Toxic Rick",
+      "status": "Dead",
+      "species": "Humanoid",
+      "type": "Rick's Toxic Side",
+      "origin": {
+        "name": "Alien Spa"
+      },
+      "location": {
+        "name": "Earth"
+      },
+      "image": "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
+      "episode": [
+        "https://rickandmortyapi.com/api/episode/27"
+      ]
+    }
+  ]
+}
