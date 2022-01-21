@@ -109,6 +109,7 @@ class _CharacterTileState extends State<CharacterTile> {
               child: const Center(
                   child: CircularProgressIndicator(
                 strokeWidth: 2,
+                color: CharactersColors.darkBlue,
               ))),
         ),
       ),
@@ -155,7 +156,8 @@ class _CharacterTileState extends State<CharacterTile> {
   void characterTapped(int id) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ConcreteCharacterPage(characterId: id)),
+      MaterialPageRoute(
+          builder: (context) => ConcreteCharacterPage(characterId: id)),
     );
   }
 }

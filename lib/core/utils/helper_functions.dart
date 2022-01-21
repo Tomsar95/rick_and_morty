@@ -5,4 +5,9 @@ class HelperFunctions {
     }
     return false;
   }
+
+  static String getNumberOfEpisodesForCharacter(List episodes){
+    if(episodes.isEmpty) return '0';
+    return episodes.length.toString();
+  }
 }

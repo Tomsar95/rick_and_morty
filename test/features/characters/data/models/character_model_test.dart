@@ -13,6 +13,7 @@ void main() {
       name: 'Toxic Rick',
       status: 'Dead',
       species: 'Humanoid',
+      gender: 'Male',
       origin: 'Alien Spa',
       location: 'Earth',
       episodes: ["https://rickandmortyapi.com/api/episode/27"]);

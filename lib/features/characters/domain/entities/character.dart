@@ -5,6 +5,7 @@ class Character extends Equatable {
   final String image;
   final String name;
   final String status;
+  final String gender;
   final String species;
   final String origin;
   final String location;
@@ -15,6 +16,7 @@ class Character extends Equatable {
       required this.image,
       required this.name,
       required this.status,
+      required this.gender,
       required this.species,
       required this.origin,
       required this.location,

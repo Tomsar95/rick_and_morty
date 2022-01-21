@@ -28,6 +28,7 @@ void main() {
         name: 'name test',
         status: 'status test',
         species: 'species test',
+        gender: 'gender test',
         origin: 'origin test',
         location: 'location test',
         episodes: ['episode test 1', 'episode test 2']);

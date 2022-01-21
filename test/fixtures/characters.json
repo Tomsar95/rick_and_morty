@@ -5,6 +5,7 @@
       "name": "Toxic Rick",
       "status": "Dead",
       "species": "Humanoid",
+      "gender":"Male",
       "type": "Rick's Toxic Side",
       "origin": {
         "name": "Alien Spa"
