@@ -72,12 +72,16 @@ class _CharacterTileState extends State<CharacterTile> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.character.name,
-                          style: CharactersTextStyles.robotoBold()),
+                      Text(
+                        widget.character.name,
+                        style: CharactersTextStyles.robotoBold(),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       buildStatus(),
                       Text(
                         widget.character.species,
                         style: CharactersTextStyles.robotoRegular(),
+                        overflow: TextOverflow.ellipsis,
                       ),
                       buildDetailButton(),
                     ],
@@ -114,13 +118,11 @@ class _CharacterTileState extends State<CharacterTile> {
     return Row(
       children: [
         ClipRRect(
-            borderRadius:
-            const BorderRadius.all(Radius.circular(7)),
+            borderRadius: const BorderRadius.all(Radius.circular(7)),
             child: Container(
               height: 14,
               width: 14,
-              color: HelperFunctions.characterIsAlive(
-                  widget.character.status)
+              color: HelperFunctions.characterIsAlive(widget.character.status)
                   ? CharactersColors.greenAccent
                   : CharactersColors.darkGray,
             )),
@@ -130,6 +132,7 @@ class _CharacterTileState extends State<CharacterTile> {
         Text(
           widget.character.status,
           style: CharactersTextStyles.robotoRegular(),
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
@@ -142,8 +145,7 @@ class _CharacterTileState extends State<CharacterTile> {
         style: ElevatedButton.styleFrom(
           primary: CharactersColors.greenAccent,
         ),
-        child: Text('Detalle',
-            style: CharactersTextStyles.robotoBold()),
+        child: Text('Detalle', style: CharactersTextStyles.robotoBold()),
         onPressed: () {},
       ),
     );
