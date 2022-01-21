@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Rick And Morty',
       theme: ThemeData(primaryColor: CharactersColors.darkBlue),
-      home: CharactersPage(),
+      home: const CharactersPage(),
     );
   }
 }
