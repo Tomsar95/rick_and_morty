@@ -6,19 +6,24 @@ import 'package:rick_and_morty/core/error/failures.dart';
 import 'package:rick_and_morty/core/use_cases/use_case.dart';
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart';
 import 'package:rick_and_morty/features/characters/domain/use_cases/get_characters.dart';
+import 'package:rick_and_morty/features/characters/domain/use_cases/get_series.dart';
 import 'package:rick_and_morty/features/characters/presentation/bloc/character/character_bloc.dart';
 import 'package:rick_and_morty/features/characters/presentation/bloc/characters/characters_bloc.dart';
 
 import 'characters_bloc_test.mocks.dart';
 
-@GenerateMocks([GetCharacters])
+
+
+@GenerateMocks([GetCharacters, GetSeries])
 void main() {
   late MockGetCharacters mockGetCharacters;
+  late MockGetSeries mockGetSeries;
   late CharactersBloc bloc;
 
   setUp(() {
     mockGetCharacters = MockGetCharacters();
-    bloc = CharactersBloc(getCharacters: mockGetCharacters);
+    mockGetSeries = MockGetSeries();
+    bloc = CharactersBloc(getCharacters: mockGetCharacters, getSeries: mockGetSeries);
   });
 
   group('GetCharacters',(){
@@ -34,6 +39,8 @@ void main() {
         episodes: ['episode test 1', 'episode test 2']);
 
     const List<Character> tListCharacter = [tCharacter];
+
+    const String tNumberOfEpisodes = '1';
 
     test('initial state should be loading', () async {
       //assert
@@ -60,7 +67,7 @@ void main() {
           //assert later
           final expected = [
             LoadingCharacterState(),
-            LoadedCharactersState(characters: tListCharacter)
+            LoadedCharactersState(characters: tListCharacter, numberOfEpisodes: tNumberOfEpisodes)
           ];
           expectLater(bloc, emitsInOrder(expected));
           //act

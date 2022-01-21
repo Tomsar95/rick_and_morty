@@ -8,8 +8,9 @@ import 'package:rick_and_morty/features/characters/presentation/pages/concrete_c
 
 class CharactersScroll extends StatefulWidget {
   final List<Character> characters;
+  final String numberOfEpisodes;
 
-  const CharactersScroll({Key? key, required this.characters})
+  const CharactersScroll({Key? key, required this.characters, required this.numberOfEpisodes})
       : super(key: key);
 
   @override
@@ -20,21 +21,46 @@ class _CharactersScrollState extends State<CharactersScroll> {
   @override
   Widget build(BuildContext context) {
     List<Widget> sliverList = [];
-    sliverList.add(SliverList(
-        delegate: SliverChildBuilderDelegate(
-      (context, index) {
-        return CharacterTile(
-          character: widget.characters[index],
-        );
-      },
-      childCount: widget.characters.length,
-    )));
+    sliverList.add(SliverToBoxAdapter(
+      child: bannerTile(),
+    ));
+    sliverList.add(SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      sliver: SliverList(
+          delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return CharacterTile(
+            character: widget.characters[index],
+          );
+        },
+        childCount: widget.characters.length,
+      )),
+    ));
     return CustomScrollView(
       scrollDirection: Axis.vertical,
       physics: const AlwaysScrollableScrollPhysics(),
       shrinkWrap: true,
       slivers: sliverList,
     );
+  }
+
+  Widget bannerTile() {
+    return Container(height: 100, color: CharactersColors.lightGray, child: Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          'La serie en números',
+          style: CharactersTextStyles.robotoBold().copyWith(fontSize: 24),
+          overflow: TextOverflow.ellipsis,
+        ),
+        Text(
+          widget.numberOfEpisodes+' Número de episodios',
+          style: CharactersTextStyles.robotoBold(),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
+    ),);
   }
 }
 

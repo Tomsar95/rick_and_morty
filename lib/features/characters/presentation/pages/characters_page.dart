@@ -27,24 +27,21 @@ class _CharactersPageState extends State<CharactersPage> {
   BlocProvider<CharactersBloc> buildBody(BuildContext context) {
     return BlocProvider(
       create: (_) => serviceLocator<CharactersBloc>(),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: BlocBuilder<CharactersBloc, CharactersState>(
-          builder: (context, state) {
-            if (state is LoadingCharactersState) {
-              context.read<CharactersBloc>().add(GetCharactersEvent());
-              return const LoadingWidget();
-            } else if (state is LoadedCharactersState) {
-              return CharactersScroll(characters: state.characters);
-            } else if (state is ErrorCharactersState) {
-              return MessageDisplay(message: state.message);
-            }
-            return SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
-              child: const Placeholder(),
-            );
-          },
-        ),
+      child: BlocBuilder<CharactersBloc, CharactersState>(
+        builder: (context, state) {
+          if (state is LoadingCharactersState) {
+            context.read<CharactersBloc>().add(GetCharactersEvent());
+            return const LoadingWidget();
+          } else if (state is LoadedCharactersState) {
+            return CharactersScroll(characters: state.characters, numberOfEpisodes: state.numberOfEpisodes,);
+          } else if (state is ErrorCharactersState) {
+            return MessageDisplay(message: state.message);
+          }
+          return SizedBox(
+            height: MediaQuery.of(context).size.height / 3,
+            child: const Placeholder(),
+          );
+        },
       ),
     );
   }

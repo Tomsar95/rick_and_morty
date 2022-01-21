@@ -15,8 +15,11 @@ class LoadingCharactersState extends CharactersState {
 
 class LoadedCharactersState extends CharactersState {
   final List<Character> characters;
+  final String numberOfEpisodes;
 
-  LoadedCharactersState({required this.characters}) : super();
+  LoadedCharactersState(
+      {required this.characters, required this.numberOfEpisodes})
+      : super();
 
   @override
   List<Object> get props => [];

@@ -10,10 +10,14 @@ import 'package:rick_and_morty/core/error/failures.dart' as _i6;
 import 'package:rick_and_morty/core/use_cases/use_case.dart' as _i8;
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart'
     as _i7;
+import 'package:rick_and_morty/features/characters/domain/entities/series.dart'
+    as _i10;
 import 'package:rick_and_morty/features/characters/domain/repositories/characters_repository.dart'
     as _i2;
 import 'package:rick_and_morty/features/characters/domain/use_cases/get_characters.dart'
     as _i4;
+import 'package:rick_and_morty/features/characters/domain/use_cases/get_series.dart'
+    as _i9;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -49,4 +53,24 @@ class MockGetCharacters extends _i1.Mock implements _i4.GetCharacters {
                   Future<_i3.Either<_i6.Failure, List<_i7.Character>>>.value(
                       _FakeEither_1<_i6.Failure, List<_i7.Character>>()))
           as _i5.Future<_i3.Either<_i6.Failure, List<_i7.Character>>>);
+}
+
+/// A class which mocks [GetSeries].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetSeries extends _i1.Mock implements _i9.GetSeries {
+  MockGetSeries() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.CharactersRepository get repository => (super.noSuchMethod(
+      Invocation.getter(#repository),
+      returnValue: _FakeCharactersRepository_0()) as _i2.CharactersRepository);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, _i10.Series>> call(_i8.NoParams? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<_i3.Either<_i6.Failure, _i10.Series>>.value(
+                  _FakeEither_1<_i6.Failure, _i10.Series>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i10.Series>>);
 }

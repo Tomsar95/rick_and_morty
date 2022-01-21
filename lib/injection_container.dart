@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:rick_and_morty/features/characters/data/datasources/characters_remote_data_source.dart';
 import 'package:rick_and_morty/features/characters/data/repositories/characters_repository_impl.dart';
 import 'package:rick_and_morty/features/characters/domain/repositories/characters_repository.dart';
+import 'package:rick_and_morty/features/characters/domain/use_cases/get_series.dart';
 import 'package:rick_and_morty/features/characters/presentation/bloc/characters/characters_bloc.dart';
 
 import 'features/characters/domain/use_cases/get_characters.dart';
@@ -24,24 +25,23 @@ Future<void> init() async {
 void initFeatures() {
   // BLoC
   serviceLocator.registerFactory(() => CharactersBloc(
-      getCharacters: serviceLocator()));
-  serviceLocator.registerFactory(() => CharacterBloc(
-      getConcreteCharacter: serviceLocator()));
+      getCharacters: serviceLocator(), getSeries: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => CharacterBloc(getConcreteCharacter: serviceLocator()));
 
   // Use Cases
-  serviceLocator
-      .registerLazySingleton(() => GetCharacters(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCharacters(serviceLocator()));
   serviceLocator
       .registerLazySingleton(() => GetConcreteCharacter(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetSeries(serviceLocator()));
 
   // Repository
-  serviceLocator.registerLazySingleton<CharactersRepository>(() =>
-      CharactersRepositoryImpl(
-          remoteDataSource: serviceLocator()));
+  serviceLocator.registerLazySingleton<CharactersRepository>(
+      () => CharactersRepositoryImpl(remoteDataSource: serviceLocator()));
 
   // Data sources
   serviceLocator.registerLazySingleton<CharactersRemoteDataSource>(
-          () => CharactersRemoteDataSourceImpl(client: serviceLocator()));
+      () => CharactersRemoteDataSourceImpl(client: serviceLocator()));
 }
 
 void initCore() {

@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:rick_and_morty/core/error/exception.dart';
 import 'package:rick_and_morty/features/characters/data/models/character_model.dart';
+import 'package:rick_and_morty/features/characters/data/models/series_model.dart';
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart';
 import 'package:http/http.dart' as http;
+import 'package:rick_and_morty/features/characters/domain/entities/series.dart';
 
 abstract class CharactersRemoteDataSource{
   /// Calls the https://rickandmortyapi.com/api/character/{id} endpoint.
@@ -15,6 +17,11 @@ abstract class CharactersRemoteDataSource{
   ///
   /// Throws a [ServerException] for all error codes.
   Future<List<Character>> getCharacters();
+
+  /// Calls the https://rickandmortyapi.com/api/episode endpoint.
+  ///
+  /// Throws a [ServerException] for all error codes.
+  Future<Series> getSeries();
 }
 
 class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource{
@@ -30,6 +37,11 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource{
   @override
   Future<Character> getConcreteCharacter(int id) async {
     return _getConcreteCharacterFromUrl('https://rickandmortyapi.com/api/character/$id');
+  }
+
+  @override
+  Future<Series> getSeries() async {
+    return _getSeriesFromUrl('https://rickandmortyapi.com/api/episode');
   }
 
   Future<List<CharacterModel>> _getCharactersFromUrl(String url) async{
@@ -60,4 +72,18 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource{
       throw ServerException('Bad Status Code');
     }
   }
+
+  Future<SeriesModel> _getSeriesFromUrl(String url) async{
+    final response = await client.get(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if(response.statusCode == 200){
+      final json = jsonDecode(response.body);
+      return SeriesModel.fromJson(json['info']);
+    } else {
+      throw ServerException('Bad Status Code');
+    }
+  }
+
 }

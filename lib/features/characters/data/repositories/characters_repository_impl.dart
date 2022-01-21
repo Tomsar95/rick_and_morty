@@ -3,6 +3,7 @@ import 'package:rick_and_morty/core/error/exception.dart';
 import 'package:rick_and_morty/core/error/failures.dart';
 import 'package:rick_and_morty/features/characters/data/datasources/characters_remote_data_source.dart';
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart';
+import 'package:rick_and_morty/features/characters/domain/entities/series.dart';
 import 'package:rick_and_morty/features/characters/domain/repositories/characters_repository.dart';
 
 class CharactersRepositoryImpl implements CharactersRepository {
@@ -25,6 +26,16 @@ class CharactersRepositoryImpl implements CharactersRepository {
     try{
       final character = await remoteDataSource.getConcreteCharacter(id);
       return Right(character);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Series>> getSeries() async {
+    try{
+      final series = await remoteDataSource.getSeries();
+      return Right(series);
     } on ServerException {
       return Left(ServerFailure());
     }
