@@ -4,6 +4,7 @@ import 'package:rick_and_morty/core/utils/characters_text_styles.dart';
 import 'package:rick_and_morty/core/utils/characters_colors.dart';
 import 'package:rick_and_morty/core/utils/helper_functions.dart';
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart';
+import 'package:rick_and_morty/features/characters/presentation/pages/concrete_character_page.dart';
 
 class CharactersScroll extends StatefulWidget {
   final List<Character> characters;
@@ -146,8 +147,15 @@ class _CharacterTileState extends State<CharacterTile> {
           primary: CharactersColors.greenAccent,
         ),
         child: Text('Detalle', style: CharactersTextStyles.robotoBold()),
-        onPressed: () {},
+        onPressed: () => characterTapped(widget.character.id),
       ),
+    );
+  }
+
+  void characterTapped(int id) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ConcreteCharacterPage(characterId: id)),
     );
   }
 }

@@ -55,7 +55,7 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource{
     );
     if(response.statusCode == 200){
       final json = jsonDecode(response.body);
-      return CharacterModel.fromJson(json['results'][0]);
+      return CharacterModel.fromJson(json);
     } else {
       throw ServerException('Bad Status Code');
     }

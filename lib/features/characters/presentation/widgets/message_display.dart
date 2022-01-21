@@ -6,16 +6,12 @@ class MessageDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: Center(
-          child: Text(
-            message,
-            style: const TextStyle(fontSize: 25),
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
+    return Center(
+      child: Text(
+        message,
+        style: const TextStyle(fontSize: 25),
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }

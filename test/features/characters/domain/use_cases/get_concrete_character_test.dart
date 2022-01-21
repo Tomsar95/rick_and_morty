@@ -32,7 +32,7 @@ void main() {
       episodes: ['episode test 1', 'episode test 2']);
 
 
-  test('should get List<Character> from the repository', () async {
+  test('should get Concrete Character from the repository', () async {
     // arrange
     when(mockCharactersRepository.getConcreteCharacter(any))
         .thenAnswer((_) async => const Right(tCharacter));

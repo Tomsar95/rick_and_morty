@@ -8,12 +8,8 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
-      child: SizedBox(
-        child: Center(
-          child: CircularProgressIndicator(color: CharactersColors.darkBlue,),
-        ),
-      ),
+    return const Center(
+      child: CircularProgressIndicator(color: CharactersColors.darkBlue,),
     );
   }
 }
