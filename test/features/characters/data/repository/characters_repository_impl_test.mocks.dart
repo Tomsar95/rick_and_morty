@@ -2,13 +2,15 @@
 // in rick_and_morty/test/features/characters/data/repository/characters_repository_impl_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:rick_and_morty/features/characters/data/datasources/characters_remote_data_source.dart'
-    as _i3;
+    as _i4;
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart'
     as _i2;
+import 'package:rick_and_morty/features/characters/domain/entities/series.dart'
+    as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -21,40 +23,52 @@ import 'package:rick_and_morty/features/characters/domain/entities/character.dar
 
 class _FakeCharacter_0 extends _i1.Fake implements _i2.Character {}
 
+class _FakeSeries_1 extends _i1.Fake implements _i3.Series {}
+
 /// A class which mocks [CharactersRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCharactersRemoteDataSource extends _i1.Mock
-    implements _i3.CharactersRemoteDataSource {
+    implements _i4.CharactersRemoteDataSource {
   MockCharactersRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Character> getConcreteCharacter(int? id) =>
+  _i5.Future<_i2.Character> getConcreteCharacter(int? id) =>
       (super.noSuchMethod(Invocation.method(#getConcreteCharacter, [id]),
               returnValue: Future<_i2.Character>.value(_FakeCharacter_0()))
-          as _i4.Future<_i2.Character>);
+          as _i5.Future<_i2.Character>);
   @override
-  _i4.Future<List<_i2.Character>> getCharacters() =>
+  _i5.Future<List<_i2.Character>> getCharacters() =>
       (super.noSuchMethod(Invocation.method(#getCharacters, []),
               returnValue: Future<List<_i2.Character>>.value(<_i2.Character>[]))
-          as _i4.Future<List<_i2.Character>>);
+          as _i5.Future<List<_i2.Character>>);
+  @override
+  _i5.Future<_i3.Series> getSeries() =>
+      (super.noSuchMethod(Invocation.method(#getSeries, []),
+              returnValue: Future<_i3.Series>.value(_FakeSeries_1()))
+          as _i5.Future<_i3.Series>);
 }
 
 /// A class which mocks [CharactersRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNumberTriviaRemoteDataSourceForTest extends _i1.Mock
-    implements _i3.CharactersRemoteDataSource {
+    implements _i4.CharactersRemoteDataSource {
   @override
-  _i4.Future<_i2.Character> getConcreteCharacter(int? id) =>
+  _i5.Future<_i2.Character> getConcreteCharacter(int? id) =>
       (super.noSuchMethod(Invocation.method(#getConcreteCharacter, [id]),
               returnValue: Future<_i2.Character>.value(_FakeCharacter_0()))
-          as _i4.Future<_i2.Character>);
+          as _i5.Future<_i2.Character>);
   @override
-  _i4.Future<List<_i2.Character>> getCharacters() =>
+  _i5.Future<List<_i2.Character>> getCharacters() =>
       (super.noSuchMethod(Invocation.method(#getCharacters, []),
               returnValue: Future<List<_i2.Character>>.value(<_i2.Character>[]))
-          as _i4.Future<List<_i2.Character>>);
+          as _i5.Future<List<_i2.Character>>);
+  @override
+  _i5.Future<_i3.Series> getSeries() =>
+      (super.noSuchMethod(Invocation.method(#getSeries, []),
+              returnValue: Future<_i3.Series>.value(_FakeSeries_1()))
+          as _i5.Future<_i3.Series>);
 }

@@ -7,6 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:rick_and_morty/core/error/exception.dart';
 import 'package:rick_and_morty/features/characters/data/datasources/characters_remote_data_source.dart';
 import 'package:rick_and_morty/features/characters/data/models/character_model.dart';
+import 'package:rick_and_morty/features/characters/data/models/series_model.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 
@@ -30,6 +31,11 @@ void main() {
   void setUpMockHttpClientFailure404() {
     when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
             (_) => Future.value(http.Response('something went wrong', 404)));
+  }
+
+  void setUpMockkHttpClientSuccess200Series() {
+    when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
+            (_) => Future.value(http.Response(fixture('series.json'), 200)));
   }
 
   group('getConcreteCharacter', () {
@@ -105,6 +111,44 @@ void main() {
       setUpMockHttpClientFailure404();
       //act
       final call = dataSource.getCharacters;
+      //assert
+      expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
+    });
+  });
+
+  group('getSeries',() {
+    final Map<String, dynamic> jsonMap =
+    json.decode(fixture('series.json'));
+    final tSeries = SeriesModel.fromJson(jsonMap['info']);
+
+    test(
+        'should perform a GET request on a URL with application/json header',
+            () async {
+          //arrange
+          setUpMockkHttpClientSuccess200Series();
+          //act
+          dataSource.getSeries();
+          //assert
+          verify(mockHttpClient.get(
+            Uri.parse('https://rickandmortyapi.com/api/episode'),
+            headers: {'Content-Type': 'application/json'},
+          ));
+        });
+
+    test('should return Series when response code is 200',() async {
+      //arrange
+      setUpMockkHttpClientSuccess200Series();
+      //act
+      final result = await dataSource.getSeries();
+      //assert
+      expect(result, equals(tSeries));
+    });
+
+    test('should throw ServerException when response code is 404 or other',() async {
+      //arrange
+      setUpMockHttpClientFailure404();
+      //act
+      final call = dataSource.getSeries;
       //assert
       expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
     });

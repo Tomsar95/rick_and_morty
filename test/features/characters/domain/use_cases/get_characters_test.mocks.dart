@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:rick_and_morty/core/error/failures.dart' as _i5;
 import 'package:rick_and_morty/features/characters/domain/entities/character.dart'
     as _i6;
+import 'package:rick_and_morty/features/characters/domain/entities/series.dart'
+    as _i7;
 import 'package:rick_and_morty/features/characters/domain/repositories/characters_repository.dart'
     as _i3;
 
@@ -46,4 +48,10 @@ class MockCharactersRepository extends _i1.Mock
               returnValue: Future<_i2.Either<_i5.Failure, _i6.Character>>.value(
                   _FakeEither_0<_i5.Failure, _i6.Character>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.Character>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, _i7.Series>> getSeries() =>
+      (super.noSuchMethod(Invocation.method(#getSeries, []),
+              returnValue: Future<_i2.Either<_i5.Failure, _i7.Series>>.value(
+                  _FakeEither_0<_i5.Failure, _i7.Series>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i7.Series>>);
 }
