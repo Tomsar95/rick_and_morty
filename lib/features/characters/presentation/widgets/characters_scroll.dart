@@ -25,7 +25,7 @@ class _CharactersScrollState extends State<CharactersScroll> {
       child: bannerTile(),
     ));
     sliverList.add(SliverPadding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       sliver: SliverList(
           delegate: SliverChildBuilderDelegate(
         (context, index) {
