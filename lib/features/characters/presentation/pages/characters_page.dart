@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/core/Utils/characters_colors.dart';
 import 'package:rick_and_morty/features/characters/presentation/bloc/characters/characters_bloc.dart';
 import 'package:rick_and_morty/features/characters/presentation/widgets/widgets.dart';
 
@@ -17,6 +18,7 @@ class _CharactersPageState extends State<CharactersPage> {
 
   @override
   void initState() {
+    charactersBloc = serviceLocator();
     charactersBloc.add(GetCharactersEvent());
     super.initState();
   }
@@ -26,6 +28,7 @@ class _CharactersPageState extends State<CharactersPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Number Trivia Generator')),
+        backgroundColor: CharactersColors.darkBlue,
       ),
       body: buildBody(context),
     );
