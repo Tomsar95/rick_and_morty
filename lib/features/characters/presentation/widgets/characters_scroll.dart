@@ -21,17 +21,18 @@ class _CharactersScrollState extends State<CharactersScroll> {
     sliverList.add(SliverList(
         delegate: SliverChildBuilderDelegate(
               (context, index) {
-            return Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-              child: CharacterTile(
-                character: widget.characters[index],
-              ),
+            return CharacterTile(
+              character: widget.characters[index],
             );
           },
           childCount: widget.characters.length,
         )));
-    return Container();
+    return CustomScrollView(
+      scrollDirection:  Axis.vertical,
+      physics: const AlwaysScrollableScrollPhysics(),
+      shrinkWrap: true,
+      slivers: sliverList,
+    );
   }
 }
 
@@ -49,7 +50,7 @@ class _CharacterTileState extends State<CharacterTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
         height: MediaQuery.of(context).size.height * 0.2,
         color: CharactersColors.lightGray,
