@@ -73,10 +73,13 @@ class _CharacterTileState extends State<CharacterTile> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.character.name,
-                        style: CharactersTextStyles.robotoBold(),
-                        overflow: TextOverflow.ellipsis,
+                      GestureDetector(
+                        onTap: () => characterTapped(widget.character.id),
+                        child: Text(
+                          widget.character.name,
+                          style: CharactersTextStyles.robotoBold(),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       buildStatus(),
                       Text(
@@ -97,20 +100,23 @@ class _CharacterTileState extends State<CharacterTile> {
   }
 
   Widget buildImage() {
-    return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
-      child: AspectRatio(
-        aspectRatio: 1 / 1,
-        child: CachedNetworkImage(
-          imageUrl: widget.character.image,
-          fit: BoxFit.fitWidth,
-          placeholder: (context, url) => Container(
-              color: CharactersColors.lightGray,
-              child: const Center(
-                  child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: CharactersColors.darkBlue,
-              ))),
+    return GestureDetector(
+      onTap: () => characterTapped(widget.character.id),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        child: AspectRatio(
+          aspectRatio: 1 / 1,
+          child: CachedNetworkImage(
+            imageUrl: widget.character.image,
+            fit: BoxFit.fitWidth,
+            placeholder: (context, url) => Container(
+                color: CharactersColors.lightGray,
+                child: const Center(
+                    child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: CharactersColors.darkBlue,
+                ))),
+          ),
         ),
       ),
     );
