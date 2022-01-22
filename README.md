@@ -1,16 +1,23 @@
 # rick_and_morty
 
-A new Flutter project.
+## Información general
 
-## Getting Started
+Proyecto en flutter para consulta de la API https://rickandmortyapi.com con los personajes y sus
+detalles de la serie Rick and Morty.
 
-This project is a starting point for a Flutter application.
+El proyecto consta de 2 ventanas:
 
-A few resources to get you started if this is your first Flutter project:
+- ventana de scroll general de personajes
+- ventana de detalles de personaje seleccionado
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Este proyecto está construido implementando Test Driven Development con Clean Architecture y
+utilizando BLoC y provider para el manejo de estados. Además el proyecto cumple con Null Safety.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Para compilar
+
+Versión de Flutter: Channel stable, 2.5.3
+Versión Dart: 2.14.4
+
+
+
+
