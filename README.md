@@ -22,7 +22,7 @@ Versión de Flutter: Channel stable, 2.5.3 Versión Dart: 2.14.4
       Android Studio).
     - una vez instalado flutter, en android studio ir a preferencias, lenguajes y frameworks, flutter y
      configurar la ruta donde se descargó Flutter.
-    - En la terminal correr el comando flutter pub get para cargar las dependencias del proyecto.
+    - En la terminal correr el comando 'flutter pub get' para cargar las dependencias del proyecto.
     - compilar en emulador o en dispositivo movil con permisos de desarrollador activados.
 
 ## Descarga el apk
@@ -35,5 +35,3 @@ armeabi-v7a y x86_64 en el drive.
 
 Trasladar el .apk al dispositivo movil y activar la configuración de seguridad para instalar
 aplicaciónes desarrolladas por terceros.
-
-flutter pub get
